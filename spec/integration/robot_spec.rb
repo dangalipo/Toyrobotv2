@@ -15,6 +15,7 @@ describe RobotSimulator do
       let(:expected_position) { "2,1,WEST\n" }
       let(:file_name) { "valid_commands.txt" }
 
+      specify { execute }
       specify { expect{execute}.to output(expected_position).to_stdout }
     end
 

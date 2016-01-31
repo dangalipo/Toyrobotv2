@@ -1,4 +1,4 @@
-class TurnCommand
+class TurnCommand < Command
 
   COMMAND_REGEX = /^(LEFT|RIGHT)$/
 
@@ -9,9 +9,9 @@ class TurnCommand
   def execute(robot)
     return unless robot.placed?
     if turn_direction == "LEFT"
-      robot.direction = (robot.direction - 1) % World::DIRECTIONS.size
+      robot.direction = World.direction_left_of_direction(robot.direction)
     else
-      robot.direction = (robot.direction + 1) % World::DIRECTIONS.size
+      robot.direction = World.direction_right_of_direction(robot.direction)
     end
   end
 

@@ -1,7 +1,7 @@
 class Robot
 
-  attr_accessor :x_position, :y_position, :direction
-  attr_accessor :placed
+  attr_accessor :x_position, :y_position, :direction,
+    :placed
 
   def initialize
     self.placed = false

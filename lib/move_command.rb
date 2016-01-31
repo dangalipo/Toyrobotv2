@@ -1,5 +1,4 @@
-class MoveCommand
-  MOVEMENTS = [[0,1], [-1,0],[0,-1], [1,0]].freeze
+class MoveCommand < Command
   COMMAND_REGEX = /^MOVE$/
 
   def initialize(unparsed_command)
@@ -9,17 +8,14 @@ class MoveCommand
 
   def execute(robot)
     return unless robot.placed?
-    robot.x_position += MOVEMENTS[robot.direction][0] if valid_x_move_for?(robot)
-    robot.y_position += MOVEMENTS[robot.direction][1] if valid_y_move_for?(robot)
+    new_x_position = robot.x_position + World.x_move_for_direction(robot.direction)
+    new_y_position = robot.y_position + World.y_move_for_direction(robot.direction)
+    if World.on_x_plane?(new_x_position)
+      robot.x_position = new_x_position
+    end
+    if World.on_x_plane?(new_y_position)
+      robot.y_position = new_y_position
+    end
   end
 
-private
-
-  def valid_x_move_for?(robot)
-    (0..4).include?(robot.x_position + MOVEMENTS[robot.direction][0])
-  end
-
-  def valid_y_move_for?(robot)
-    (0..4).include?(robot.y_position + MOVEMENTS[robot.direction][1])
-  end
 end

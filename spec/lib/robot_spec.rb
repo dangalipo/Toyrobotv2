@@ -41,4 +41,33 @@ describe Robot do
     specify { expect{place}.to change(robot, :direction).to(direction) }
   end
 
+  describe '#move' do
+    let(:new_coordinates) do
+      Coordinates.new(x_coordinate: 2, y_coordinate: 2)
+    end
+
+    subject(:move) do
+      robot.move(new_coordinates)
+    end
+
+    context 'robot is placed' do
+      let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 1) }
+      let(:robot) do
+        Robot.new.tap do |rob|
+          rob.place(coordinates, 1)
+        end
+      end
+
+      specify do
+        expect{move}.to change(robot, :coordinates).to(new_coordinates)
+      end
+    end
+
+    context 'robot is not placed' do
+      let(:robot) { Robot.new }
+      specify { expect{move}.not_to change(robot, :coordinates) }
+    end
+
+  end
+
 end

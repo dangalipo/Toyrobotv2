@@ -13,10 +13,9 @@ class PlaceCommand < Command
 
   def execute(robot)
     validate!
-    robot.x_position = x_position
-    robot.y_position = y_position
-    robot.direction = World.direction_names.index(direction)
-    robot.placed = true
+    coordinates = Coordinates.new(x_coordinate: x_position,
+                                  y_coordinate: y_position)
+    robot.place(coordinates, World.direction_names.index(direction))
   end
 
 private

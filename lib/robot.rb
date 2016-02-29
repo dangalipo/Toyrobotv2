@@ -1,7 +1,6 @@
 class Robot
 
-  attr_accessor :x_position, :y_position, :direction,
-    :placed
+  attr_accessor :direction
   attr_reader :coordinates
 
   def initialize
@@ -18,8 +17,25 @@ class Robot
     self.placed = true
   end
 
+  def move(coordinates)
+    if placed?
+      self.coordinates = coordinates
+    end
+  end
+
+  def x_position
+    return nil if coordinates.nil?
+    coordinates.x_coordinate
+  end
+
+  def y_position
+    return nil if coordinates.nil?
+    coordinates.y_coordinate
+  end
+
  private
 
+ attr_accessor :placed
  attr_writer :coordinates
 
 end

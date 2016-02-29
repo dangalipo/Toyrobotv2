@@ -7,14 +7,13 @@ class MoveCommand < Command
   end
 
   def execute(robot)
-    return unless robot.placed?
+    return nil unless robot.placed?
     new_x_position = robot.x_position + World.x_move_for_direction(robot.direction)
     new_y_position = robot.y_position + World.y_move_for_direction(robot.direction)
-    if World.on_x_plane?(new_x_position)
-      robot.x_position = new_x_position
-    end
-    if World.on_x_plane?(new_y_position)
-      robot.y_position = new_y_position
+    if World.on_x_plane?(new_x_position) && World.on_x_plane?(new_y_position)
+      coordinates = Coordinates.new(x_coordinate: new_x_position,
+                                    y_coordinate: new_y_position)
+      robot.move(coordinates)
     end
   end
 

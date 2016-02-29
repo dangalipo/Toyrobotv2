@@ -6,15 +6,13 @@ describe TurnCommand do
     subject(:turn) { TurnCommand.new(unparsed_command).execute(robot) }
 
     context "robot has been placed" do
+      let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 1) }
 
       context "turning left" do
         let(:unparsed_command) { "LEFT" }
         let(:robot) do
           Robot.new.tap do |rob|
-            rob.x_position = 1
-            rob.y_position = 1
-            rob.direction = 0
-            rob.placed = true
+            rob.place(coordinates, 0)
           end
         end
 
@@ -24,10 +22,7 @@ describe TurnCommand do
         let(:unparsed_command) { "RIGHT" }
         let(:robot) do
           Robot.new.tap do |rob|
-            rob.x_position = 1
-            rob.y_position = 1
-            rob.direction = 3
-            rob.placed = true
+            rob.place(coordinates, 3)
           end
         end
 

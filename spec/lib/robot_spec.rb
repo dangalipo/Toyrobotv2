@@ -5,26 +5,25 @@ describe Robot do
   describe "#initialize" do
     subject(:robot) { Robot.new }
 
-    specify { expect(robot.placed).to be false }
+    specify { expect(robot.placed?).to be false }
   end
 
   describe "#placed?" do
-    let(:robot) do
-      Robot.new.tap do |rob|
-        rob.placed = placed
-      end
-    end
-
     subject { robot.placed? }
 
     context "robot is placed" do
-      let(:placed) { true }
+      let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 1) }
+      let(:robot) do
+        Robot.new.tap do |rob|
+          rob.place(coordinates, 1)
+        end
+      end
 
       it { is_expected.to be true }
     end
 
     context "robot is not placed" do
-      let(:placed) { false }
+      let(:robot) { Robot.new }
 
       it { is_expected.to be false }
     end

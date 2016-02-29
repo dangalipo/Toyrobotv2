@@ -3,21 +3,20 @@ require "spec_helper"
 describe MoveCommand do
 
   describe "#execute" do
-    let(:robot) do
-      Robot.new.tap do |rob|
-        rob.x_position = x_position
-        rob.y_position = y_position
-        rob.direction = direction
-        rob.placed = placed
-      end
-    end
+
 
     subject(:move) { MoveCommand.new("MOVE").execute(robot)}
 
     context "robot is placed" do
-      let(:placed) { true }
-      let(:x_position) { 0 }
-      let(:y_position) { 0 }
+      let(:coordinates) do
+        Coordinates.new(x_coordinate: 0,
+                        y_coordinate: 0)
+      end
+      let(:robot) do
+        Robot.new.tap do |rob|
+          rob.place(coordinates, direction)
+        end
+      end
 
       context "move would be destructive" do
         context "move on the x axis would be destructive" do
@@ -50,10 +49,7 @@ describe MoveCommand do
     end
 
     context "robot is not placed" do
-      let(:placed) { false }
-      let(:x_position) { nil }
-      let(:y_position) { nil }
-      let(:direction) { nil }
+      let(:robot) { Robot.new }
 
       specify { expect{move}.not_to change(robot, :x_position) }
       specify { expect{move}.not_to change(robot, :y_position) }

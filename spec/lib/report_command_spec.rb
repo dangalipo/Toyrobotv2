@@ -7,12 +7,10 @@ describe ReportCommand do
     subject(:report) { ReportCommand.new(unparsed_command).execute(robot) }
 
     context "robot has been placed" do
+      let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 1) }
       let(:robot) do
         Robot.new.tap do |rob|
-          rob.x_position = 1
-          rob.y_position = 1
-          rob.direction = 1
-          rob.placed = true
+          rob.place(coordinates, 1)
         end
       end
 

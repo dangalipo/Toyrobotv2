@@ -28,7 +28,17 @@ describe Robot do
 
       it { is_expected.to be false }
     end
+  end
 
+  describe '#place' do
+    let(:robot) { Robot.new }
+    let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 1) }
+    let(:direction)   { 1 }
+
+    subject(:place) { robot.place(coordinates, direction) }
+
+    specify { expect{place}.to change(robot, :coordinates).to(coordinates) }
+    specify { expect{place}.to change(robot, :direction).to(direction) }
   end
 
 end

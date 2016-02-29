@@ -32,12 +32,12 @@ describe Coordinates do
     end
 
     specify do
-      expect(set_coordinates)
+      expect{set_coordinates}
         .to change(coordinates, :x_coordinate)
         .to(new_x_coordinate)
     end
     specify do
-      expect(set_coordinates)
+      expect{set_coordinates}
         .to change(coordinates, :y_coordinate)
         .to(new_y_coordinate)
     end

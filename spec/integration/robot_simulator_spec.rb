@@ -12,7 +12,7 @@ describe RobotSimulator do
     let(:file_name) { "not_a_file.txt" }
     specify do
       expect{execute}
-        .to output("File not found /Users/dan/Projects/toy_robot_v2/spec/fixtures/not_a_file.txt\n").to_stdout
+        .to output("File not found #{file_path}\n").to_stdout
     end
   end
 

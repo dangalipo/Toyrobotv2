@@ -4,7 +4,8 @@ describe ReportCommand do
 
   describe "#execute" do
     let(:unparsed_command) { "REPORT" }
-    subject(:report) { ReportCommand.new(unparsed_command).execute(robot) }
+    let(:world) { World.new }
+    subject(:report) { ReportCommand.new(unparsed_command).execute(robot, world) }
 
     context "robot has been placed" do
       let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 1) }

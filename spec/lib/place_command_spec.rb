@@ -3,9 +3,9 @@ require "spec_helper"
 describe PlaceCommand do
 
   describe "#execute" do
-
     let(:robot) { Robot.new }
-    subject(:place) { PlaceCommand.new(unparsed_command).execute(robot) }
+    let(:world) { World.new }
+    subject(:place) { PlaceCommand.new(unparsed_command).execute(robot, world) }
 
     context "valid place command" do
       let(:unparsed_command) { "PLACE 0,0,WEST" }

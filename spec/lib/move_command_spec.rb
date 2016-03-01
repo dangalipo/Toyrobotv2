@@ -3,9 +3,8 @@ require "spec_helper"
 describe MoveCommand do
 
   describe "#execute" do
-
-
-    subject(:move) { MoveCommand.new("MOVE").execute(robot)}
+    let(:world)  { World.new }
+    subject(:move) { MoveCommand.new("MOVE").execute(robot, world)}
 
     context "robot is placed" do
       let(:coordinates) do

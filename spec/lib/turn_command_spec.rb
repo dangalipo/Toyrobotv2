@@ -11,23 +11,25 @@ describe TurnCommand do
 
       context "turning left" do
         let(:unparsed_command) { "LEFT" }
+        let(:direction) { world.find_direction_by_name("NORTH") }
         let(:robot) do
           Robot.new.tap do |rob|
-            rob.place(coordinates, 0)
+            rob.place(coordinates, direction)
           end
         end
 
-        specify { expect{turn}.to change(robot, :direction).to(3) }
+        specify { expect{turn}.to change(robot, :direction_name).to("WEST") }
       end
       context "turning right" do
         let(:unparsed_command) { "RIGHT" }
+        let(:direction) { world.find_direction_by_name("WEST") }
         let(:robot) do
           Robot.new.tap do |rob|
-            rob.place(coordinates, 3)
+            rob.place(coordinates, direction)
           end
         end
 
-        specify { expect{turn}.to change(robot, :direction).to 0 }
+        specify { expect{turn}.to change(robot, :direction_name).to "NORTH" }
       end
     end
 

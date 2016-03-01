@@ -58,14 +58,36 @@ describe World do
   end
 
   describe ".direction_left_of_direction" do
-    subject { world.direction_left_of_direction(0) }
+    let(:direction) { world.find_direction_by_name("NORTH") }
+    let(:expected_direction) { world.find_direction_by_name("WEST") }
+    subject { world.direction_left_of_direction(direction) }
 
-    it { is_expected.to eq(3) }
+    it { is_expected.to eq(expected_direction) }
   end
 
   describe ".direction_right_of_direction" do
-    subject { world.direction_right_of_direction(3) }
+    let(:direction) { world.find_direction_by_name("WEST") }
+    let(:expected_direction) { world.find_direction_by_name("NORTH") }
+    subject { world.direction_right_of_direction(direction) }
 
-    it { is_expected.to eq(0) }
+    it { is_expected.to eq(expected_direction) }
+  end
+
+  describe '#find_direction_by_name' do
+    let(:world) { World.new }
+
+    subject(:direction) { world.find_direction_by_name(name) }
+    context 'direction exists' do
+      let(:name) { "WEST" }
+
+      specify { expect(direction.name).to eq(name) }
+    end
+
+    context "direction doesn't exist" do
+      let(:name) { "NORTHWEST" }
+
+      specify { expect(direction).to be_nil }
+    end
+
   end
 end

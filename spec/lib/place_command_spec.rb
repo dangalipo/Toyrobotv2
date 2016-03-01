@@ -12,7 +12,7 @@ describe PlaceCommand do
 
       specify { expect{place}.to change(robot, :x_position).to(0) }
       specify { expect{place}.to change(robot, :y_position).to(0) }
-      specify { expect{place}.to change(robot, :direction).to(3) }
+      specify { expect{place}.to change(robot, :direction_name).to('WEST') }
     end
 
     context "invalid place command" do

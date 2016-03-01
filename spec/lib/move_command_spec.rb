@@ -19,13 +19,13 @@ describe MoveCommand do
 
       context "move would be destructive" do
         context "move on the x axis would be destructive" do
-          let(:direction) { 1 }
+          let(:direction) { world.find_direction_by_name("EAST") }
 
           specify { expect{move}.not_to change(robot, :x_position) }
         end
 
         context "move on the y axis would be destructive" do
-          let(:direction) { 2 }
+          let(:direction) { world.find_direction_by_name("SOUTH") }
 
           specify { expect{move}.not_to change(robot, :y_position) }
         end
@@ -33,13 +33,13 @@ describe MoveCommand do
 
       context "move is not desctructive" do
         context "move on the x axis" do
-          let(:direction) { 3 }
+          let(:direction) { world.find_direction_by_name("WEST") }
 
           specify { expect{move}.to change(robot, :x_position).to(1) }
         end
 
         context "move on the y axis" do
-          let(:direction) { 0 }
+          let(:direction) { world.find_direction_by_name("NORTH") }
 
           specify { expect{move}.to change(robot, :y_position).to(1) }
         end

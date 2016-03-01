@@ -8,10 +8,11 @@ describe ReportCommand do
     subject(:report) { ReportCommand.new(unparsed_command).execute(robot, world) }
 
     context "robot has been placed" do
+      let(:direction) { world.find_direction_by_name("EAST") }
       let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 1) }
       let(:robot) do
         Robot.new.tap do |rob|
-          rob.place(coordinates, 1)
+          rob.place(coordinates, direction)
         end
       end
 

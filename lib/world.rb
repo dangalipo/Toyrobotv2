@@ -12,6 +12,10 @@ class World
     ]
   end
 
+  def find_direction_by_name(name)
+    directions.find{|direction| direction.name == name }
+  end
+
   def direction_names
     directions.map{|direction| direction.name }
   end
@@ -33,14 +37,19 @@ class World
   end
 
   def direction_left_of_direction(direction)
-    (direction - 1) % directions.size
+    next_direction(directions.index(direction), -1)
   end
 
   def direction_right_of_direction(direction)
-    (direction + 1) % directions.size
+    next_direction(directions.index(direction), 1)
   end
 
   private
+
+  def next_direction(index, modifier)
+    new_index = (index + modifier) % directions.size
+    directions[new_index]
+  end
 
   attr_accessor :x_plane, :y_plane, :directions
 end

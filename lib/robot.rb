@@ -33,6 +33,11 @@ class Robot
     coordinates.y_coordinate
   end
 
+  def direction_name
+    return nil if direction.nil?
+    direction.name
+  end
+
  private
 
  attr_accessor :placed

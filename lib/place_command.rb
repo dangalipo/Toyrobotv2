@@ -15,7 +15,7 @@ class PlaceCommand < Command
     validate!(world)
     coordinates = Coordinates.new(x_coordinate: x_position,
                                   y_coordinate: y_position)
-    robot.place(coordinates, world.direction_names.index(direction))
+    robot.place(coordinates, world.find_direction_by_name(direction))
   end
 
 private

@@ -11,22 +11,22 @@ class PlaceCommand < Command
     self.direction = parsed_command[3]
   end
 
-  def execute(robot)
-    validate!
+  def execute(robot, world)
+    validate!(world)
     coordinates = Coordinates.new(x_coordinate: x_position,
                                   y_coordinate: y_position)
-    robot.place(coordinates, World.direction_names.index(direction))
+    robot.place(coordinates, world.direction_names.index(direction))
   end
 
 private
 
-  def validate!
-    unless World.on_x_plane?(x_position) && World.on_y_plane?(y_position)
+  def validate!(world)
+    unless world.on_x_plane?(x_position) && world.on_y_plane?(y_position)
       raise InvalidPositionError,
         "Cannot place Robot at #{x_position}, #{y_position} as it is not on the table."
       TEXT
     end
-    unless World.direction_names.include?(direction)
+    unless world.direction_names.include?(direction)
       raise InvalidDirectionError,
         "Cannot place Robot facing #{direction} as it is not a valid direction."
     end

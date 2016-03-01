@@ -6,9 +6,9 @@ class ReportCommand < Command
     # command classes
   end
 
-  def execute(robot)
+  def execute(robot, world)
     return unless robot.placed?
-    puts "#{robot.x_position},#{robot.y_position},#{World.direction_names[robot.direction]}"
+    puts "#{robot.x_position},#{robot.y_position},#{world.direction_names[robot.direction]}"
   end
 
 end

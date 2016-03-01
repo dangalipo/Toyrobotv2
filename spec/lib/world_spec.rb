@@ -3,28 +3,6 @@ require "spec_helper"
 describe World do
   let(:world) { World.new }
 
-  describe ".direction_names" do
-    subject(:direction_names) { world.direction_names }
-
-    specify { expect(direction_names.size).to eq(4) }
-    specify { expect(direction_names.first).to eq("NORTH") }
-    specify { expect(direction_names[1]).to eq("EAST") }
-    specify { expect(direction_names[2]).to eq("SOUTH") }
-    specify { expect(direction_names.last).to eq("WEST") }
-  end
-
-  describe ".x_move_for_direction" do
-    subject { world.x_move_for_direction(0) }
-
-    it { is_expected.to eq(0) }
-  end
-
-  describe ".y_move_for_direction" do
-    subject { world.y_move_for_direction(0) }
-
-    it { is_expected.to eq(1) }
-  end
-
   describe ".on_x_plane?" do
     subject { world.on_x_plane?(position) }
 

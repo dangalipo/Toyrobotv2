@@ -8,11 +8,12 @@ class TurnCommand < Command
 
   def execute(robot, world)
     return unless robot.placed?
-    if turn_direction == "LEFT"
-      robot.direction = world.direction_left_of_direction(robot.direction)
+    new_direction = if turn_direction == "LEFT"
+      world.direction_left_of_direction(robot.direction)
     else
-      robot.direction = world.direction_right_of_direction(robot.direction)
+      world.direction_right_of_direction(robot.direction)
     end
+    robot.turn_to_face(new_direction)
   end
 
 private

@@ -6,11 +6,6 @@ class Coordinates
     self.y_coordinate = y_coordinate
   end
 
-  def set_coordinates(x_coordinate:, y_coordinate:)
-    self.x_coordinate = x_coordinate
-    self.y_coordinate = y_coordinate
-  end
-
   def to_s
     [x_coordinate, y_coordinate].join(',')
   end

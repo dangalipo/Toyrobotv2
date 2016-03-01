@@ -13,9 +13,10 @@ describe Robot do
 
     context "robot is placed" do
       let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 1) }
+      let(:direction)   { Direction.new(name: "EAST", move_x: -1, move_y: 0) }
       let(:robot) do
         Robot.new.tap do |rob|
-          rob.place(coordinates, 1)
+          rob.place(coordinates, direction)
         end
       end
 
@@ -32,7 +33,7 @@ describe Robot do
   describe '#place' do
     let(:robot) { Robot.new }
     let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 1) }
-    let(:direction)   { 1 }
+    let(:direction)   { Direction.new(name: "EAST", move_x: -1, move_y: 0) }
 
     subject(:place) { robot.place(coordinates, direction) }
 
@@ -67,6 +68,111 @@ describe Robot do
       specify { expect{move}.not_to change(robot, :coordinates) }
     end
 
+  end
+
+  describe '#turn_to_face' do
+    let(:direction)       { Direction.new(name: "WEST", move_x: 1, move_y: 0) }
+    let(:new_direction)   { Direction.new(name: "EAST", move_x: -1, move_y: 0) }
+    let(:coordinates)     { Coordinates.new(x_coordinate: 1, y_coordinate: 1) }
+    let(:robot) do
+      Robot.new.tap do |rob|
+        rob.place(coordinates, direction)
+      end
+    end
+
+    subject(:turn_to_face) { robot.turn_to_face(new_direction) }
+
+    specify { expect{turn_to_face}.to change(robot, :direction).to(new_direction) }
+  end
+
+  describe '#x_position' do
+    subject { robot.x_position }
+
+    context "robot hasn't been placed" do
+      let(:robot) { Robot.new }
+
+      it { is_expected.to be_nil }
+    end
+
+    context "robot has been placed" do
+      let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 2) }
+      let(:direction)   { Direction.new(name: "EAST", move_x: -1, move_y: 0) }
+      let(:robot) do
+        Robot.new.tap do |rob|
+          rob.place(coordinates, direction)
+        end
+      end
+
+      it { is_expected.to eq(1) }
+    end
+
+  end
+
+  describe '#y_position' do
+    subject { robot.y_position }
+
+    context "robot hasn't been placed" do
+      let(:robot) { Robot.new }
+
+      it { is_expected.to be_nil }
+    end
+
+    context "robot has been placed" do
+      let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 2) }
+      let(:direction)   { Direction.new(name: "EAST", move_x: -1, move_y: 0) }
+      let(:robot) do
+        Robot.new.tap do |rob|
+          rob.place(coordinates, direction)
+        end
+      end
+
+      it { is_expected.to eq(2) }
+    end
+
+  end
+
+  describe '#to_s' do
+    subject { robot.to_s }
+
+    context "robot hasn't been placed" do
+      let(:robot) { Robot.new }
+
+      it { is_expected.to eq("") }
+    end
+
+    context "robot has been placed" do
+      let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 2) }
+      let(:direction)   { Direction.new(name: "EAST", move_x: -1, move_y: 0) }
+      let(:robot) do
+        Robot.new.tap do |rob|
+          rob.place(coordinates, direction)
+        end
+      end
+
+      it { is_expected.to eq("1,2,EAST") }
+    end
+  end
+
+  describe '#direction_name' do
+    subject { robot.direction_name }
+
+    context "robot hasn't been placed" do
+      let(:robot) { Robot.new }
+
+      it { is_expected.to eq("") }
+    end
+
+    context "robot has been placed" do
+      let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 2) }
+      let(:direction)   { Direction.new(name: "EAST", move_x: -1, move_y: 0) }
+      let(:robot) do
+        Robot.new.tap do |rob|
+          rob.place(coordinates, direction)
+        end
+      end
+
+      it { is_expected.to eq("EAST") }
+    end
   end
 
 end

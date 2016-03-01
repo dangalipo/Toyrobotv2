@@ -1,5 +1,3 @@
-require "singleton"
-require "forwardable"
 class World
   def initialize
     self.x_plane = (0..4)
@@ -14,18 +12,6 @@ class World
 
   def find_direction_by_name(name)
     directions.find{|direction| direction.name == name }
-  end
-
-  def direction_names
-    directions.map{|direction| direction.name }
-  end
-
-  def x_move_for_direction(direction)
-    directions[direction].move_x
-  end
-
-  def y_move_for_direction(direction)
-    directions[direction].move_y
   end
 
   def on_x_plane?(position)

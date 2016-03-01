@@ -1,3 +1,5 @@
+require_relative 'coordinates.rb'
+require_relative 'direction.rb'
 require_relative "robot.rb"
 require_relative "world.rb"
 require_relative "command.rb"

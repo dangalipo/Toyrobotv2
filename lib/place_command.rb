@@ -26,7 +26,7 @@ private
         "Cannot place Robot at #{x_position}, #{y_position} as it is not on the table."
       TEXT
     end
-    unless world.direction_names.include?(direction)
+    unless world.find_direction_by_name(direction)
       raise InvalidDirectionError,
         "Cannot place Robot facing #{direction} as it is not a valid direction."
     end

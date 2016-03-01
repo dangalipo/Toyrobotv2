@@ -1,7 +1,6 @@
 class Robot
 
-  attr_accessor :direction
-  attr_reader :coordinates
+  attr_reader :coordinates, :direction
 
   def initialize
     self.placed = false
@@ -23,6 +22,10 @@ class Robot
     end
   end
 
+  def turn_to_face(direction)
+    self.direction = direction
+  end
+
   def x_position
     return nil if coordinates.nil?
     coordinates.x_coordinate
@@ -33,14 +36,19 @@ class Robot
     coordinates.y_coordinate
   end
 
+  def to_s
+    return "" unless placed?
+    [coordinates.to_s, direction_name].join(',')
+  end
+
   def direction_name
-    return nil if direction.nil?
+    return "" unless placed?
     direction.name
   end
 
  private
 
  attr_accessor :placed
- attr_writer :coordinates
+ attr_writer :coordinates, :direction
 
 end

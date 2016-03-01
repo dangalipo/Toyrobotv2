@@ -20,29 +20,6 @@ describe Coordinates do
     it { is_expected.to eq(y_coordinate) }
   end
 
-  describe '#set_coordinates' do
-    let(:x_coordinate) { 1 }
-    let(:y_coordinate) { 1 }
-    let(:new_x_coordinate) { 2 }
-    let(:new_y_coordinate) { 2 }
-
-    subject(:set_coordinates) do
-      coordinates.set_coordinates(x_coordinate: new_x_coordinate,
-                                  y_coordinate: new_y_coordinate)
-    end
-
-    specify do
-      expect{set_coordinates}
-        .to change(coordinates, :x_coordinate)
-        .to(new_x_coordinate)
-    end
-    specify do
-      expect{set_coordinates}
-        .to change(coordinates, :y_coordinate)
-        .to(new_y_coordinate)
-    end
-  end
-
   describe '#to_s' do
     subject { coordinates.to_s }
 

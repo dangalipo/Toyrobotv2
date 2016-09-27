@@ -1,40 +1,40 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe TurnCommand do
 
-  describe "#execute" do
+  describe '#execute' do
     let(:world) { World.new }
-    subject(:turn) { TurnCommand.new(unparsed_command).execute(robot, world) }
+    subject(:turn) { TurnCommand.new(robot, unparsed_command).execute(world) }
 
-    context "robot has been placed" do
+    context 'robot has been placed' do
       let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 1) }
 
-      context "turning left" do
-        let(:unparsed_command) { "LEFT" }
-        let(:direction) { world.find_direction_by_name("NORTH") }
+      context 'turning left' do
+        let(:unparsed_command) { 'LEFT' }
+        let(:direction) { world.find_direction_by_name('NORTH') }
         let(:robot) do
           Robot.new.tap do |rob|
             rob.place(coordinates, direction)
           end
         end
 
-        specify { expect{turn}.to change(robot, :direction_name).to("WEST") }
+        specify { expect{turn}.to change(robot, :direction_name).to('WEST') }
       end
-      context "turning right" do
-        let(:unparsed_command) { "RIGHT" }
-        let(:direction) { world.find_direction_by_name("WEST") }
+      context 'turning right' do
+        let(:unparsed_command) { 'RIGHT' }
+        let(:direction) { world.find_direction_by_name('WEST') }
         let(:robot) do
           Robot.new.tap do |rob|
             rob.place(coordinates, direction)
           end
         end
 
-        specify { expect{turn}.to change(robot, :direction_name).to "NORTH" }
+        specify { expect{turn}.to change(robot, :direction_name).to 'NORTH' }
       end
     end
 
-    context "robot has not been placed" do
-      let(:unparsed_command) { "RIGHT" }
+    context 'robot has not been placed' do
+      let(:unparsed_command) { 'RIGHT' }
       let(:robot) { Robot.new }
 
       specify { expect{turn}.not_to change(robot, :direction) }

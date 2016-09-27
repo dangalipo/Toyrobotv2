@@ -1,12 +1,11 @@
 class ReportCommand < Command
   COMMAND_REGEX = /^REPORT$/
 
-  def initialize(unparsed_command)
-    # defined to keep consitency with other
-    # command classes
+  def initialize(robot, _unparsed_command)
+    super(robot)
   end
 
-  def execute(robot, world)
+  def execute(_world)
     return unless robot.placed?
     puts robot.to_s
   end

@@ -3,8 +3,9 @@ require "spec_helper"
 describe CommandFactory do
 
   describe "#commmand" do
+    let(:robot) { Robot.new }
 
-    subject(:command) { CommandFactory.new(unparsed_command).command }
+    subject(:command) { CommandFactory.new(robot, unparsed_command).command }
 
     context "a place command is passed" do
       let(:unparsed_command) { "PLACE 0,0,EAST" }

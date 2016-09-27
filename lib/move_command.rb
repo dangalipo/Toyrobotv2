@@ -1,12 +1,11 @@
 class MoveCommand < Command
   COMMAND_REGEX = /^MOVE$/
 
-  def initialize(unparsed_command)
-    # defined to keep consitency with other
-    # command classes
+  def initialize(robot, _unparsed_command)
+    super(robot)
   end
 
-  def execute(robot, world)
+  def execute(world)
     return nil unless robot.placed?
     new_x_position = robot.x_position + robot.direction.move_x
     new_y_position = robot.y_position + robot.direction.move_y

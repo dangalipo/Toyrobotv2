@@ -19,8 +19,8 @@ class RobotSimulator
   def execute
     begin
       unparsed_commands.each do |unparsed_command|
-        command = CommandFactory.new(unparsed_command).command
-        command.execute(robot, world)
+        command = CommandFactory.new(robot, unparsed_command).command
+        command.execute(world)
       end
     rescue PlaceCommand::InvalidDirectionError,
            PlaceCommand::InvalidPositionError,

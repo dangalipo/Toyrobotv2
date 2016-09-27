@@ -12,24 +12,24 @@ class PlaceCommand < Command
     self.direction = parsed_command[3]
   end
 
-  def execute(world)
-    validate(world)
+  def execute(table_top)
+    validate(table_top)
     coordinates = Coordinates.new(x_coordinate: x_position,
                                   y_coordinate: y_position)
-    robot.place(coordinates, world.find_direction_by_name(direction))
+    robot.place(coordinates, table_top.find_direction_by_name(direction))
   end
 
   private
 
   attr_accessor :x_position, :y_position, :direction
 
-  def validate(world)
-    unless world.on_x_plane?(x_position) && world.on_y_plane?(y_position)
+  def validate(table_top)
+    unless table_top.on_x_plane?(x_position) && table_top.on_y_plane?(y_position)
       raise InvalidPositionError,
         "Cannot place Robot at #{x_position}, #{y_position} as it is not on the table."
       TEXT
     end
-    unless world.find_direction_by_name(direction)
+    unless table_top.find_direction_by_name(direction)
       raise InvalidDirectionError,
         "Cannot place Robot facing #{direction} as it is not a valid direction."
     end

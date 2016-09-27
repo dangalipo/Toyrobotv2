@@ -4,8 +4,8 @@ describe PlaceCommand do
 
   describe '#execute' do
     let(:robot) { Robot.new }
-    let(:world) { World.new }
-    subject(:place) { PlaceCommand.new(robot, unparsed_command).execute(world) }
+    let(:table_top) { TableTop.new }
+    subject(:place) { PlaceCommand.new(robot, unparsed_command).execute(table_top) }
 
     context 'valid place command' do
       let(:unparsed_command) { 'PLACE 0,0,WEST' }
@@ -17,7 +17,7 @@ describe PlaceCommand do
 
     context 'invalid place command' do
 
-      context 'position outside of world' do
+      context 'position outside of table_top' do
         let(:unparsed_command) { 'PLACE 10,-10,WEST' }
 
         specify do
@@ -27,7 +27,7 @@ describe PlaceCommand do
         end
       end
 
-      context 'direction not in world' do
+      context 'direction not in table_top' do
         let(:unparsed_command) { 'PLACE 0,0,NORTHWEST' }
 
         specify do

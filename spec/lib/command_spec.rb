@@ -4,11 +4,11 @@ describe Command do
 
   describe "#execute" do
 
-    subject(:execute) { Command.new(Robot.new).execute(World.new) }
+    subject(:execute) { Command.new(Robot.new).execute(TableTop.new) }
 
     specify do
       expect{execute}.to raise_error(NotImplementedError,
-        "Subclasses of Command are exepected to implement #execute(world)"
+        "Subclasses of Command are exepected to implement #execute(table_top)"
       )
     end
 

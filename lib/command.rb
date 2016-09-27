@@ -4,9 +4,9 @@ class Command
     self.robot = robot
   end
 
-  def execute(_world)
+  def execute(_table_top)
     raise NotImplementedError,
-      "Subclasses of Command are exepected to implement #execute(world)"
+      'Subclasses of Command are exepected to implement #execute(table_top)'
   end
 
   protected

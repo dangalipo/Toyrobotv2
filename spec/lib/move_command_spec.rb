@@ -3,8 +3,8 @@ require 'spec_helper'
 describe MoveCommand do
 
   describe '#execute' do
-    let(:world)  { World.new }
-    subject(:move) { MoveCommand.new(robot, 'MOVE').execute(world)}
+    let(:table_top)  { TableTop.new }
+    subject(:move) { MoveCommand.new(robot, 'MOVE').execute(table_top)}
 
     context 'robot is placed' do
       let(:coordinates) do
@@ -19,13 +19,13 @@ describe MoveCommand do
 
       context 'move would be destructive' do
         context 'move on the x axis would be destructive' do
-          let(:direction) { world.find_direction_by_name('EAST') }
+          let(:direction) { table_top.find_direction_by_name('EAST') }
 
           specify { expect{move}.not_to change(robot, :x_position) }
         end
 
         context 'move on the y axis would be destructive' do
-          let(:direction) { world.find_direction_by_name('SOUTH') }
+          let(:direction) { table_top.find_direction_by_name('SOUTH') }
 
           specify { expect{move}.not_to change(robot, :y_position) }
         end
@@ -33,13 +33,13 @@ describe MoveCommand do
 
       context 'move is not desctructive' do
         context 'move on the x axis' do
-          let(:direction) { world.find_direction_by_name('WEST') }
+          let(:direction) { table_top.find_direction_by_name('WEST') }
 
           specify { expect{move}.to change(robot, :x_position).to(1) }
         end
 
         context 'move on the y axis' do
-          let(:direction) { world.find_direction_by_name('NORTH') }
+          let(:direction) { table_top.find_direction_by_name('NORTH') }
 
           specify { expect{move}.to change(robot, :y_position).to(1) }
         end

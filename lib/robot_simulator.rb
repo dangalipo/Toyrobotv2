@@ -1,7 +1,7 @@
 require_relative 'coordinates.rb'
 require_relative 'direction.rb'
 require_relative "robot.rb"
-require_relative "world.rb"
+require_relative "table_top.rb"
 require_relative "command.rb"
 require_relative "place_command.rb"
 require_relative "turn_command.rb"
@@ -13,14 +13,14 @@ class RobotSimulator
   def initialize(commands_path:)
     self.commands_path = commands_path
     self.robot = Robot.new
-    self.world = World.new
+    self.table_top = TableTop.new
   end
 
   def execute
     begin
       unparsed_commands.each do |unparsed_command|
         command = CommandFactory.new(robot, unparsed_command).command
-        command.execute(world)
+        command.execute(table_top)
       end
     rescue PlaceCommand::InvalidDirectionError,
            PlaceCommand::InvalidPositionError,
@@ -32,7 +32,7 @@ class RobotSimulator
   end
 
 private
-  attr_accessor :commands_path, :robot, :world
+  attr_accessor :commands_path, :robot, :table_top
 
   def unparsed_commands
     @unparsed_commands ||= File.read(commands_path).split("\n")

@@ -4,11 +4,11 @@ describe ReportCommand do
 
   describe '#execute' do
     let(:unparsed_command) { 'REPORT' }
-    let(:world) { World.new }
-    subject(:report) { ReportCommand.new(robot, unparsed_command).execute(world) }
+    let(:table_top) { TableTop.new }
+    subject(:report) { ReportCommand.new(robot, unparsed_command).execute(table_top) }
 
     context 'robot has been placed' do
-      let(:direction) { world.find_direction_by_name('EAST') }
+      let(:direction) { table_top.find_direction_by_name('EAST') }
       let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 1) }
       let(:robot) do
         Robot.new.tap do |rob|

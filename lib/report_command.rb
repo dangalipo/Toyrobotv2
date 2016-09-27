@@ -5,7 +5,7 @@ class ReportCommand < Command
     super(robot)
   end
 
-  def execute(_world)
+  def execute(_table_top)
     return unless robot.placed?
     puts robot.to_s
   end

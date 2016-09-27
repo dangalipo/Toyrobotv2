@@ -7,13 +7,13 @@ class TurnCommand < Command
     self.turn_direction = unparsed_command.match(COMMAND_REGEX)[1]
   end
 
-  def execute(world)
+  def execute(table_top)
     return unless robot.placed?
     current_direction = robot.direction
     new_direction = if turn_direction == 'LEFT'
-      world.direction_left_of_direction(current_direction)
+      table_top.direction_left_of_direction(current_direction)
     else
-      world.direction_right_of_direction(current_direction)
+      table_top.direction_right_of_direction(current_direction)
     end
     robot.turn_to_face(new_direction)
   end

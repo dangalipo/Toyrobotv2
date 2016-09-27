@@ -25,6 +25,9 @@ You can exit the CLI by entering `exit` or sending a SIGTERM
 ## Testing
 Tests are written in rspec and are located in ./spec and can be ran with ```bundle exec rspec spec```
 
+Please note the CLI compontent is not tested as it is:
+- very simple
+- quicker to test by hand that writing brittle specs that stub STDIN.
 
 ## Discussion
 At a high level, the basis of this solution is a simulator class initializing a Robot, TableTop and

@@ -5,7 +5,7 @@ describe RobotSimulator do
     File.expand_path("../../fixtures/#{file_name}", __FILE__)
   end
   subject(:execute) do
-    RobotSimulator.new(commands_path: file_path).execute
+    RobotSimulator.new(commands_source: file_path).execute
   end
 
   describe "commands file not found" do

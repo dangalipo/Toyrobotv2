@@ -17,6 +17,11 @@ Run the following command to simulate commands in the given file:
 
 For some examples, look in ```spec/fixtures```
 
+There is also a CLI:
+```ruby bin/toy_robot.rb -i```
+
+You can exit the CLI by entering `exit` or sending a SIGTERM
+
 ## Testing
 Tests are written in rspec and are located in ./spec and can be ran with ```bundle exec rspec spec```
 
@@ -30,8 +35,8 @@ directions and boundries.
 The Command structure uses the an Abstract class (in theory, ruby will still initalize it just fine). Whilst
 this is sometimes frowned upon, I have found that adoptting this pattern occasionally, helps communicate the
 expected interface. Regarding the commands themselves, I have elected to include the instruction calculations
-inside them rather than in the Robot. There is definately an argument for moving them into the Robot itself as 
-they gerenally will involve the Robot's state, however I feel that the interactions with the TableTop make this 
+inside them rather than in the Robot. There is definately an argument for moving them into the Robot itself as
+they gerenally will involve the Robot's state, however I feel that the interactions with the TableTop make this
 a little fuzzy. Alternatively, the Robot could be initialized with a TableTop instance but in my mind this might
 be giving the Robot too much information.
 

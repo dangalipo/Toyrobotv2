@@ -4,6 +4,9 @@ class Robot
 
   def initialize
     self.placed = false
+    self.coordinates = Coordinates.new(x_coordinate: nil,
+                                       y_coordinate: nil)
+    self.direction = Direction.new(name: '', move_x: 0, move_y: 0)
   end
 
   def placed?
@@ -17,9 +20,7 @@ class Robot
   end
 
   def move(coordinates)
-    if placed?
-      self.coordinates = coordinates
-    end
+    self.coordinates = coordinates if placed?
   end
 
   def turn_to_face(direction)
@@ -27,22 +28,19 @@ class Robot
   end
 
   def x_position
-    return nil if coordinates.nil?
     coordinates.x_coordinate
   end
 
   def y_position
-    return nil if coordinates.nil?
     coordinates.y_coordinate
   end
 
   def to_s
-    return "" unless placed?
+    return '' unless placed?
     [coordinates.to_s, direction_name].join(',')
   end
 
   def direction_name
-    return "" unless placed?
     direction.name
   end
 

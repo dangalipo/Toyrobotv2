@@ -14,12 +14,9 @@ class TableTop
     directions.find{|direction| direction.name == name }
   end
 
-  def on_x_plane?(position)
-    x_plane.include?(position)
-  end
-
-  def on_y_plane?(position)
-    y_plane.include?(position)
+  def valid_coordinates?(coordinates)
+    on_x_plane?(coordinates.x_coordinate) &&
+      on_y_plane?(coordinates.y_coordinate)
   end
 
   def direction_left_of_direction(direction)
@@ -31,6 +28,14 @@ class TableTop
   end
 
   private
+
+  def on_x_plane?(position)
+    x_plane.include?(position)
+  end
+
+  def on_y_plane?(position)
+    y_plane.include?(position)
+  end
 
   def next_direction(index, modifier)
     new_index = (index + modifier) % directions.size

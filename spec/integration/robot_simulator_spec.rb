@@ -21,7 +21,6 @@ describe RobotSimulator do
       let(:expected_position) { "2,1,WEST\n" }
       let(:file_name) { "valid_commands.txt" }
 
-      specify { execute }
       specify { expect{execute}.to output(expected_position).to_stdout }
     end
 
@@ -93,7 +92,7 @@ describe RobotSimulator do
 
         specify do
           expect{execute}
-            .to output("Cannot place Robot at 10, -10 as it is not on the table.\n").to_stdout
+            .to output("Cannot place Robot at 10,-10 as it is not on the table.\n").to_stdout
         end
       end
     end

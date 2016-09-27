@@ -7,26 +7,24 @@ class PlaceCommand < Command
   def initialize(robot, unparsed_command)
     super(robot)
     parsed_command = unparsed_command.match(COMMAND_REGEX)
-    self.x_position = parsed_command[1].to_i
-    self.y_position = parsed_command[2].to_i
+    self.coordinates = Coordinates.new(x_coordinate: parsed_command[1].to_i,
+                                       y_coordinate: parsed_command[2].to_i)
     self.direction = parsed_command[3]
   end
 
   def execute(table_top)
     validate(table_top)
-    coordinates = Coordinates.new(x_coordinate: x_position,
-                                  y_coordinate: y_position)
     robot.place(coordinates, table_top.find_direction_by_name(direction))
   end
 
   private
 
-  attr_accessor :x_position, :y_position, :direction
+  attr_accessor :coordinates, :direction
 
   def validate(table_top)
-    unless table_top.on_x_plane?(x_position) && table_top.on_y_plane?(y_position)
+    unless table_top.valid_coordinates?(coordinates)
       raise InvalidPositionError,
-        "Cannot place Robot at #{x_position}, #{y_position} as it is not on the table."
+        "Cannot place Robot at #{coordinates.to_s} as it is not on the table."
       TEXT
     end
     unless table_top.find_direction_by_name(direction)

@@ -22,7 +22,7 @@ describe PlaceCommand do
 
         specify do
           expect{place}.to raise_error(PlaceCommand::InvalidPositionError,
-            'Cannot place Robot at 10, -10 as it is not on the table.'
+            'Cannot place Robot at 10,-10 as it is not on the table.'
           )
         end
       end

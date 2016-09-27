@@ -3,35 +3,43 @@ require 'spec_helper'
 describe TableTop do
   let(:table_top) { TableTop.new }
 
-  describe '.on_x_plane?' do
-    subject { table_top.on_x_plane?(position) }
-
-    context 'position is on x plane' do
-      let(:position) { 1 }
-
-      it { is_expected.to be true }
+  describe '#valid_coordinates?' do
+    let(:x_coordinate) { 1 }
+    let(:y_coordinate) { 1 }
+    let(:coordinates) do
+      Coordinates.new(x_coordinate: x_coordinate, y_coordinate: y_coordinate)
     end
 
-    context 'position is not on x plane' do
-      let(:position) { -1 }
+    subject { table_top.valid_coordinates?(coordinates) }
 
-      it { is_expected.to be false }
+    context 'x_coordinate' do
+
+      context 'is on x plane' do
+        let(:x_coordinate) { 1 }
+
+        it { is_expected.to be true }
+      end
+
+      context 'is not on x plane' do
+        let(:x_coordinate) { -1 }
+
+        it { is_expected.to be false }
+      end
     end
-  end
 
-  describe '.on_y_plane?' do
-    subject { table_top.on_y_plane?(position) }
+    context 'y_coordinate' do
 
-    context 'position is on y plane' do
-      let(:position) { 1 }
+      context 'is on x plane' do
+        let(:y_coordinate) { 1 }
 
-      it { is_expected.to be true }
-    end
+        it { is_expected.to be true }
+      end
 
-    context 'position is not on y plane' do
-      let(:position) { -1 }
+      context 'is not on x plane' do
+        let(:y_coordinate) { -1 }
 
-      it { is_expected.to be false }
+        it { is_expected.to be false }
+      end
     end
   end
 

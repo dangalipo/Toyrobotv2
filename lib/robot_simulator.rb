@@ -31,8 +31,8 @@ class RobotSimulator
     end
   end
 
-  attr_accessor :commands_path, :robot, :world
 private
+  attr_accessor :commands_path, :robot, :world
 
   def unparsed_commands
     @unparsed_commands ||= File.read(commands_path).split("\n")

@@ -18,21 +18,21 @@ describe RobotSimulator do
 
   describe "valid commands set" do
     context "excludes ignorable commands" do
-      let(:expected_position) { "2,1,WEST\n" }
-      let(:file_name) { "valid_commands.txt" }
-
-      specify { expect{execute}.to output(expected_position).to_stdout }
-    end
-
-    context "includes include commands" do
-      let(:expected_position) { "0,2,NORTH\n" }
+      let(:expected_position) { "1,2,NORTH\n" }
       let(:file_name) { "valid_ignorable_commands.txt" }
 
       specify { expect{execute}.to output(expected_position).to_stdout }
     end
 
+    context "normal commands" do
+      let(:expected_position) { "2,1,EAST\n" }
+      let(:file_name) { "valid_commands.txt" }
+
+      specify { expect{execute}.to output(expected_position).to_stdout }
+    end
+
     context "multiple place commands" do
-      let(:expected_position) { "3,3,SOUTH\n" }
+      let(:expected_position) { "3,4,NORTH\n" }
       let(:file_name) { "valid_multiple_place_commands.txt" }
 
       specify { expect{execute}.to output(expected_position).to_stdout }

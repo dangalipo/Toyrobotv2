@@ -19,7 +19,7 @@ describe MoveCommand do
 
       context 'move would be destructive' do
         context 'move on the x axis would be destructive' do
-          let(:direction) { table_top.find_direction_by_name('EAST') }
+          let(:direction) { table_top.find_direction_by_name('WEST') }
 
           specify { expect{move}.not_to change(robot, :x_position) }
         end
@@ -33,7 +33,7 @@ describe MoveCommand do
 
       context 'move is not desctructive' do
         context 'move on the x axis' do
-          let(:direction) { table_top.find_direction_by_name('WEST') }
+          let(:direction) { table_top.find_direction_by_name('EAST') }
 
           specify { expect{move}.to change(robot, :x_position).to(1) }
         end

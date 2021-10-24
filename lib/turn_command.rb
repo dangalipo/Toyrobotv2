@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class TurnCommand < Command
-  COMMAND_REGEX = /^(LEFT|RIGHT)$/
+  COMMAND_REGEX = /^(LEFT|RIGHT)$/.freeze
 
   def execute
     return unless robot.placed?

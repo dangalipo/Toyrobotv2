@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Direction
   attr_reader :name, :move_x, :move_y
 

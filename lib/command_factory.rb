@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CommandFactory
-  DEFAULT_COMMANDS = [PlaceCommand, TurnCommand, MoveCommand, ReportCommand]
+  DEFAULT_COMMANDS = [PlaceCommand, TurnCommand, MoveCommand, ReportCommand].freeze
   def initialize(robot:, unparsed_command:, commands: DEFAULT_COMMANDS)
     self.unparsed_command = unparsed_command
     self.robot = robot

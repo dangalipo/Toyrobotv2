@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Robot
   attr_reader :coordinates, :direction, :table_top
 

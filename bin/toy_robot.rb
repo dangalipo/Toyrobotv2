@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../lib/robot_simulator'
 
 if ARGV.size == 1

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'coordinates'
 require_relative 'direction'
 require_relative 'robot'
@@ -17,9 +19,9 @@ class RobotSimulator
 
   def execute
     if commands_source == '-i'
-      while true
+      loop do
         print 'Enter Command: '
-        unparsed_command = STDIN.gets.chomp
+        unparsed_command = $stdin.gets.chomp
         return if unparsed_command == 'exit'
 
         execute_command(unparsed_command)
@@ -39,7 +41,7 @@ class RobotSimulator
 
   def execute_command(unparsed_command)
     command = CommandFactory.new(robot: robot, unparsed_command: unparsed_command).command
-    command.execute(table_top)
+    command.execute
   rescue PlaceCommand::InvalidDirectionError,
          PlaceCommand::InvalidPositionError,
          UnknownCommand::UnknownCommandError => e

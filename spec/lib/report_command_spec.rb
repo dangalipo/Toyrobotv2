@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe ReportCommand do
@@ -5,7 +7,7 @@ describe ReportCommand do
     let(:unparsed_command) { 'REPORT' }
     let(:table_top) { TableTop.new }
     let(:robot) { Robot.new(table_top: table_top) }
-    subject(:report) { ReportCommand.new(robot, unparsed_command).execute(table_top) }
+    subject(:report) { ReportCommand.new(robot, unparsed_command).execute }
 
     context 'robot has been placed' do
       let(:direction) { table_top.find_direction_by_name('EAST') }

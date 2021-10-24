@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PlaceCommand < Command
-  COMMAND_REGEX = /^PLACE (-?\d+),(-?\d+),(\w+)$/
+  COMMAND_REGEX = /^PLACE (-?\d+),(-?\d+),(\w+)$/.freeze
 
   class InvalidPositionError < ArgumentError; end
 

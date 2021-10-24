@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class MoveCommand < Command
-  COMMAND_REGEX = /^MOVE$/
+  COMMAND_REGEX = /^MOVE$/.freeze
 
   def execute
     return unless robot.placed?
@@ -12,4 +14,5 @@ class MoveCommand < Command
                                   y_coordinate: new_y_position)
     robot.move(coordinates) if table_top.valid_coordinates?(coordinates)
   end
+
 end

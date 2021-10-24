@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Command
   def initialize(robot, unparsed_command)
     self.robot = robot

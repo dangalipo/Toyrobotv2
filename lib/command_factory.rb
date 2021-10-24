@@ -1,7 +1,7 @@
 class CommandFactory
   class UnrecognisedCommandError < ArgumentError; end
 
-  def initialize(robot, unparsed_command)
+  def initialize(robot:, unparsed_command:)
     self.unparsed_command = unparsed_command
     self.robot = robot
   end

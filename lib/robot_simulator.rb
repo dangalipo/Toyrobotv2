@@ -38,7 +38,7 @@ class RobotSimulator
   attr_accessor :commands_source, :robot, :table_top
 
   def execute_command(unparsed_command)
-    command = CommandFactory.new(robot, unparsed_command).command
+    command = CommandFactory.new(robot: robot, unparsed_command: unparsed_command).command
     command.execute(table_top)
   rescue PlaceCommand::InvalidDirectionError,
          PlaceCommand::InvalidPositionError,

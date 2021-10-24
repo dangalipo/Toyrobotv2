@@ -1,7 +1,9 @@
 class CommandFactory
-  def initialize(robot:, unparsed_command:)
+  DEFAULT_COMMANDS = [PlaceCommand, TurnCommand, MoveCommand, ReportCommand]
+  def initialize(robot:, unparsed_command:, commands: DEFAULT_COMMANDS)
     self.unparsed_command = unparsed_command
     self.robot = robot
+    self.commands = commands
   end
 
   def command

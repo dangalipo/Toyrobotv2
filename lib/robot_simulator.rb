@@ -7,6 +7,7 @@ require_relative 'place_command'
 require_relative 'turn_command'
 require_relative 'move_command'
 require_relative 'report_command'
+require_relative 'unknown_command'
 require_relative 'command_factory'
 class RobotSimulator
   def initialize(commands_source:)
@@ -42,7 +43,7 @@ class RobotSimulator
     command.execute(table_top)
   rescue PlaceCommand::InvalidDirectionError,
          PlaceCommand::InvalidPositionError,
-         CommandFactory::UnrecognisedCommandError => e
+         UnknownCommand::UnknownCommandError => e
     puts e.message
   end
 

@@ -33,11 +33,7 @@ describe CommandFactory do
     context 'an unknown command is passed' do
       let(:unparsed_command) { 'GIBBERISH' }
 
-      specify do
-        expect do
-          command
-        end.to raise_error(CommandFactory::UnrecognisedCommandError, "Don't know how to process GIBBERISH")
-      end
+      it { is_expected.to be_a(UnknownCommand) }
     end
   end
 end

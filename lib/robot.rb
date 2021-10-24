@@ -1,5 +1,4 @@
 class Robot
-
   attr_reader :coordinates, :direction
 
   def initialize
@@ -37,6 +36,7 @@ class Robot
 
   def to_s
     return '' unless placed?
+
     [coordinates.to_s, direction_name].join(',')
   end
 
@@ -44,9 +44,8 @@ class Robot
     direction.name
   end
 
- private
+  private
 
- attr_accessor :placed
- attr_writer :coordinates, :direction
-
+  attr_accessor :placed
+  attr_writer :coordinates, :direction
 end

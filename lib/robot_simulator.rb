@@ -1,15 +1,14 @@
-require_relative 'coordinates.rb'
-require_relative 'direction.rb'
-require_relative "robot.rb"
-require_relative "table_top.rb"
-require_relative "command.rb"
-require_relative "place_command.rb"
-require_relative "turn_command.rb"
-require_relative "move_command.rb"
-require_relative "report_command.rb"
-require_relative "command_factory.rb"
+require_relative 'coordinates'
+require_relative 'direction'
+require_relative 'robot'
+require_relative 'table_top'
+require_relative 'command'
+require_relative 'place_command'
+require_relative 'turn_command'
+require_relative 'move_command'
+require_relative 'report_command'
+require_relative 'command_factory'
 class RobotSimulator
-
   def initialize(commands_source:)
     self.commands_source = commands_source
     self.robot = Robot.new
@@ -17,36 +16,34 @@ class RobotSimulator
   end
 
   def execute
-    begin
-      if commands_source == '-i'
-        while true
-          print 'Enter Command: '
-          unparsed_command = STDIN.gets.chomp
-          return if unparsed_command == 'exit'
-          execute_command(unparsed_command)
-        end
-      else
-        unparsed_commands.each do |unparsed_command|
-          execute_command(unparsed_command)
-        end
+    if commands_source == '-i'
+      while true
+        print 'Enter Command: '
+        unparsed_command = STDIN.gets.chomp
+        return if unparsed_command == 'exit'
+
+        execute_command(unparsed_command)
       end
-    rescue Errno::ENOENT
-      puts "File not found #{commands_source}"
+    else
+      unparsed_commands.each do |unparsed_command|
+        execute_command(unparsed_command)
+      end
     end
+  rescue Errno::ENOENT
+    puts "File not found #{commands_source}"
   end
 
-private
+  private
+
   attr_accessor :commands_source, :robot, :table_top
 
   def execute_command(unparsed_command)
-    begin
-      command = CommandFactory.new(robot, unparsed_command).command
-      command.execute(table_top)
-    rescue PlaceCommand::InvalidDirectionError,
-           PlaceCommand::InvalidPositionError,
-           CommandFactory::UnrecognisedCommandError => e
-      puts e.message
-    end
+    command = CommandFactory.new(robot, unparsed_command).command
+    command.execute(table_top)
+  rescue PlaceCommand::InvalidDirectionError,
+         PlaceCommand::InvalidPositionError,
+         CommandFactory::UnrecognisedCommandError => e
+    puts e.message
   end
 
   def unparsed_commands

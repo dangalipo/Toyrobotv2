@@ -2,6 +2,7 @@ class PlaceCommand < Command
   COMMAND_REGEX = /^PLACE (-?\d+),(-?\d+),(\w+)$/
 
   class InvalidPositionError < ArgumentError; end
+
   class InvalidDirectionError < ArgumentError; end
 
   def initialize(robot, unparsed_command)
@@ -24,13 +25,12 @@ class PlaceCommand < Command
   def validate(table_top)
     unless table_top.valid_coordinates?(coordinates)
       raise InvalidPositionError,
-        "Cannot place Robot at #{coordinates.to_s} as it is not on the table."
+            "Cannot place Robot at #{coordinates} as it is not on the table."
       TEXT
     end
     unless table_top.find_direction_by_name(direction)
       raise InvalidDirectionError,
-        "Cannot place Robot facing #{direction} as it is not a valid direction."
+            "Cannot place Robot facing #{direction} as it is not a valid direction."
     end
   end
-
 end

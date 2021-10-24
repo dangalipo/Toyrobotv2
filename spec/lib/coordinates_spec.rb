@@ -25,5 +25,4 @@ describe Coordinates do
 
     it { is_expected.to eq("#{x_coordinate},#{y_coordinate}") }
   end
-
 end

@@ -6,7 +6,7 @@ describe Direction do
                   move_x: move_x,
                   move_y: move_y)
   end
-  let(:name)    { "WEST" }
+  let(:name)    { 'WEST' }
   let(:move_x)  { 1 }
   let(:move_y)  { 0 }
 
@@ -27,5 +27,4 @@ describe Direction do
 
     it { is_expected.to eq(move_y) }
   end
-
 end

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe TurnCommand do
-
   describe '#execute' do
     let(:table_top) { TableTop.new }
     subject(:turn) { TurnCommand.new(robot, unparsed_command).execute(table_top) }
@@ -18,7 +17,7 @@ describe TurnCommand do
           end
         end
 
-        specify { expect{turn}.to change(robot, :direction_name).to('WEST') }
+        specify { expect { turn }.to change(robot, :direction_name).to('WEST') }
       end
       context 'turning right' do
         let(:unparsed_command) { 'RIGHT' }
@@ -29,7 +28,7 @@ describe TurnCommand do
           end
         end
 
-        specify { expect{turn}.to change(robot, :direction_name).to 'NORTH' }
+        specify { expect { turn }.to change(robot, :direction_name).to 'NORTH' }
       end
     end
 
@@ -37,8 +36,7 @@ describe TurnCommand do
       let(:unparsed_command) { 'RIGHT' }
       let(:robot) { Robot.new }
 
-      specify { expect{turn}.not_to change(robot, :direction) }
+      specify { expect { turn }.not_to change(robot, :direction) }
     end
   end
-
 end

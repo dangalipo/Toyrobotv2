@@ -10,5 +10,4 @@ class Direction
   private
 
   attr_writer :name, :move_x, :move_y
-
 end

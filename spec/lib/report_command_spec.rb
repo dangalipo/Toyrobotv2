@@ -1,7 +1,6 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe ReportCommand do
-
   describe '#execute' do
     let(:unparsed_command) { 'REPORT' }
     let(:table_top) { TableTop.new }
@@ -16,13 +15,13 @@ describe ReportCommand do
         end
       end
 
-      specify { expect{report}.to output("1,1,EAST\n").to_stdout }
+      specify { expect { report }.to output("1,1,EAST\n").to_stdout }
     end
 
     context 'robot has not been placed' do
       let(:robot) { Robot.new }
 
-      specify { expect{report}.not_to output("1,1,EAST\n").to_stdout }
+      specify { expect { report }.not_to output("1,1,EAST\n").to_stdout }
     end
   end
 end

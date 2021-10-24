@@ -13,7 +13,6 @@ describe TableTop do
     subject { table_top.valid_coordinates?(coordinates) }
 
     context 'x_coordinate' do
-
       context 'is on x plane' do
         let(:x_coordinate) { 1 }
 
@@ -28,7 +27,6 @@ describe TableTop do
     end
 
     context 'y_coordinate' do
-
       context 'is on x plane' do
         let(:y_coordinate) { 1 }
 
@@ -74,6 +72,5 @@ describe TableTop do
 
       specify { expect(direction).to be_nil }
     end
-
   end
 end

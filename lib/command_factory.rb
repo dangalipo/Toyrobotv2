@@ -1,5 +1,4 @@
 class CommandFactory
-
   class UnrecognisedCommandError < ArgumentError; end
 
   def initialize(robot, unparsed_command)
@@ -17,7 +16,7 @@ class CommandFactory
       else
         raise UnrecognisedCommandError,
               "Don't know how to process #{unparsed_command}"
-    end
+      end
     command_class.new(robot, unparsed_command)
   end
 

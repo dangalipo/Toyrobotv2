@@ -7,16 +7,10 @@ class CommandFactory
   end
 
   def command
-    command_class =
-      case unparsed_command
-      when PlaceCommand::COMMAND_REGEX then PlaceCommand
-      when TurnCommand::COMMAND_REGEX then TurnCommand
-      when MoveCommand::COMMAND_REGEX then MoveCommand
-      when ReportCommand::COMMAND_REGEX then ReportCommand
-      else
-        UnknownCommand
-      end
-    command_class.new(robot, unparsed_command)
+    command_class = commands.find do |command|
+      command::COMMAND_REGEX =~ unparsed_command
+    end
+    (command_class || UnknownCommand).new(robot, unparsed_command)
   end
 
   private

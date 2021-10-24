@@ -2,7 +2,7 @@ class TurnCommand < Command
   COMMAND_REGEX = /^(LEFT|RIGHT)$/
 
   def initialize(robot, unparsed_command)
-    super(robot)
+    super
     self.turn_direction = unparsed_command.match(COMMAND_REGEX)[1]
   end
 

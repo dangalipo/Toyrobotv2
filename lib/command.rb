@@ -1,6 +1,7 @@
 class Command
-  def initialize(robot)
+  def initialize(robot, unparsed_command)
     self.robot = robot
+    self.unparsed_command = unparsed_command
   end
 
   def execute(_table_top)
@@ -10,5 +11,5 @@ class Command
 
   protected
 
-  attr_accessor :robot
+  attr_accessor :robot, :unparsed_command
 end

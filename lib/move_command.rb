@@ -1,9 +1,6 @@
 class MoveCommand < Command
   COMMAND_REGEX = /^MOVE$/
 
-  def initialize(robot, _unparsed_command)
-    super(robot)
-  end
 
   def execute(table_top)
     return nil unless robot.placed?

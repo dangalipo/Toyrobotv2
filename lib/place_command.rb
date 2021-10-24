@@ -6,7 +6,7 @@ class PlaceCommand < Command
   class InvalidDirectionError < ArgumentError; end
 
   def initialize(robot, unparsed_command)
-    super(robot)
+    super
     parsed_command = unparsed_command.match(COMMAND_REGEX)
     self.coordinates = Coordinates.new(x_coordinate: parsed_command[1].to_i,
                                        y_coordinate: parsed_command[2].to_i)

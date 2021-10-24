@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe MoveCommand do
   describe '#execute' do
-    let(:table_top)  { TableTop.new }
+    let(:table_top) { TableTop.new }
+    let(:robot) { Robot.new(table_top: table_top) }
     subject(:move) { MoveCommand.new(robot, 'MOVE').execute(table_top) }
 
     context 'robot is placed' do
@@ -10,10 +11,8 @@ describe MoveCommand do
         Coordinates.new(x_coordinate: 0,
                         y_coordinate: 0)
       end
-      let(:robot) do
-        Robot.new.tap do |rob|
-          rob.place(coordinates, direction)
-        end
+      before do
+        robot.place(coordinates, direction)
       end
 
       context 'move would be destructive' do
@@ -46,8 +45,6 @@ describe MoveCommand do
     end
 
     context 'robot is not placed' do
-      let(:robot) { Robot.new }
-
       specify { expect { move }.not_to change(robot, :x_position) }
       specify { expect { move }.not_to change(robot, :y_position) }
     end

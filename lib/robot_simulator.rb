@@ -12,8 +12,8 @@ require_relative 'command_factory'
 class RobotSimulator
   def initialize(commands_source:)
     self.commands_source = commands_source
-    self.robot = Robot.new
     self.table_top = TableTop.new
+    self.robot = Robot.new(table_top: table_top)
   end
 
   def execute

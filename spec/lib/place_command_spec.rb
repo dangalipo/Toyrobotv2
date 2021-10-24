@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe PlaceCommand do
   describe '#execute' do
-    let(:robot) { Robot.new }
     let(:table_top) { TableTop.new }
+    let(:robot) { Robot.new(table_top: table_top) }
     subject(:place) { PlaceCommand.new(robot, unparsed_command).execute(table_top) }
 
     context 'valid place command' do

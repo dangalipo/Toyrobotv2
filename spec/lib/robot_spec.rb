@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Robot do
   describe '#initialize' do
-    subject(:robot) { Robot.new }
+    subject(:robot) { Robot.new(table_top: TableTop.new) }
 
     specify { expect(robot.placed?).to be false }
   end
@@ -14,7 +14,7 @@ describe Robot do
       let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 1) }
       let(:direction)   { Direction.new(name: 'EAST', move_x: -1, move_y: 0) }
       let(:robot) do
-        Robot.new.tap do |rob|
+        Robot.new(table_top: TableTop.new).tap do |rob|
           rob.place(coordinates, direction)
         end
       end
@@ -23,14 +23,14 @@ describe Robot do
     end
 
     context 'robot is not placed' do
-      let(:robot) { Robot.new }
+      let(:robot) { Robot.new(table_top: TableTop.new) }
 
       it { is_expected.to be false }
     end
   end
 
   describe '#place' do
-    let(:robot) { Robot.new }
+    let(:robot) { Robot.new(table_top: TableTop.new) }
     let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 1) }
     let(:direction)   { Direction.new(name: 'EAST', move_x: -1, move_y: 0) }
 
@@ -52,7 +52,7 @@ describe Robot do
     context 'robot is placed' do
       let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 1) }
       let(:robot) do
-        Robot.new.tap do |rob|
+        Robot.new(table_top: TableTop.new).tap do |rob|
           rob.place(coordinates, 1)
         end
       end
@@ -63,7 +63,7 @@ describe Robot do
     end
 
     context 'robot is not placed' do
-      let(:robot) { Robot.new }
+      let(:robot) { Robot.new(table_top: TableTop.new) }
       specify { expect { move }.not_to change(robot, :coordinates) }
     end
   end
@@ -73,7 +73,7 @@ describe Robot do
     let(:new_direction)   { Direction.new(name: 'EAST', move_x: -1, move_y: 0) }
     let(:coordinates)     { Coordinates.new(x_coordinate: 1, y_coordinate: 1) }
     let(:robot) do
-      Robot.new.tap do |rob|
+      Robot.new(table_top: TableTop.new).tap do |rob|
         rob.place(coordinates, direction)
       end
     end
@@ -87,7 +87,7 @@ describe Robot do
     subject { robot.x_position }
 
     context "robot hasn't been placed" do
-      let(:robot) { Robot.new }
+      let(:robot) { Robot.new(table_top: TableTop.new) }
 
       it { is_expected.to be_nil }
     end
@@ -96,7 +96,7 @@ describe Robot do
       let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 2) }
       let(:direction)   { Direction.new(name: 'EAST', move_x: -1, move_y: 0) }
       let(:robot) do
-        Robot.new.tap do |rob|
+        Robot.new(table_top: TableTop.new).tap do |rob|
           rob.place(coordinates, direction)
         end
       end
@@ -109,7 +109,7 @@ describe Robot do
     subject { robot.y_position }
 
     context "robot hasn't been placed" do
-      let(:robot) { Robot.new }
+      let(:robot) { Robot.new(table_top: TableTop.new) }
 
       it { is_expected.to be_nil }
     end
@@ -118,7 +118,7 @@ describe Robot do
       let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 2) }
       let(:direction)   { Direction.new(name: 'EAST', move_x: -1, move_y: 0) }
       let(:robot) do
-        Robot.new.tap do |rob|
+        Robot.new(table_top: TableTop.new).tap do |rob|
           rob.place(coordinates, direction)
         end
       end
@@ -131,7 +131,7 @@ describe Robot do
     subject { robot.to_s }
 
     context "robot hasn't been placed" do
-      let(:robot) { Robot.new }
+      let(:robot) { Robot.new(table_top: TableTop.new) }
 
       it { is_expected.to eq('') }
     end
@@ -140,7 +140,7 @@ describe Robot do
       let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 2) }
       let(:direction)   { Direction.new(name: 'EAST', move_x: -1, move_y: 0) }
       let(:robot) do
-        Robot.new.tap do |rob|
+        Robot.new(table_top: TableTop.new).tap do |rob|
           rob.place(coordinates, direction)
         end
       end
@@ -153,7 +153,7 @@ describe Robot do
     subject { robot.direction_name }
 
     context "robot hasn't been placed" do
-      let(:robot) { Robot.new }
+      let(:robot) { Robot.new(table_top: TableTop.new) }
 
       it { is_expected.to eq('') }
     end
@@ -162,7 +162,7 @@ describe Robot do
       let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 2) }
       let(:direction)   { Direction.new(name: 'EAST', move_x: -1, move_y: 0) }
       let(:robot) do
-        Robot.new.tap do |rob|
+        Robot.new(table_top: TableTop.new).tap do |rob|
           rob.place(coordinates, direction)
         end
       end

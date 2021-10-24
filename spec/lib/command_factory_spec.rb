@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe CommandFactory do
   describe '#commmand' do
-    let(:robot) { Robot.new }
+    let(:robot) { Robot.new(table_top: TableTop) }
 
     subject(:command) { CommandFactory.new(robot: robot, unparsed_command: unparsed_command).command }
 

@@ -1,11 +1,12 @@
 class Robot
-  attr_reader :coordinates, :direction
+  attr_reader :coordinates, :direction, :table_top
 
-  def initialize
+  def initialize(table_top:)
     self.placed = false
     self.coordinates = Coordinates.new(x_coordinate: nil,
                                        y_coordinate: nil)
     self.direction = Direction.new(name: '', move_x: 0, move_y: 0)
+    self.table_top = table_top
   end
 
   def placed?
@@ -47,5 +48,5 @@ class Robot
   private
 
   attr_accessor :placed
-  attr_writer :coordinates, :direction
+  attr_writer :coordinates, :direction, :table_top
 end

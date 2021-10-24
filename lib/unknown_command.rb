@@ -12,5 +12,6 @@ class UnknownCommand < Command
   end
 
   private
+
   attr_accessor :unparsed_command
 end

@@ -1,17 +1,19 @@
 class TableTop
-  def initialize
-    self.x_plane = (0..4)
-    self.y_plane = (0..4)
-    self.directions = [
+  DEFAULT_DIRECTIONS = [
       Direction.new(name: 'NORTH', move_x: 0, move_y: 1),
       Direction.new(name: 'EAST', move_x: 1, move_y: 0),
       Direction.new(name: 'SOUTH', move_x: 0, move_y: -1),
-      Direction.new(name: 'WEST', move_x: -1, move_y: 0),
+      Direction.new(name: 'WEST', move_x: -1, move_y: 0)
     ]
+
+  def initialize(x_size: 5, y_size: 5, directions: DEFAULT_DIRECTIONS)
+    self.x_plane = (0..x_size)
+    self.y_plane = (0..y_size)
+    self.directions = directions
   end
 
   def find_direction_by_name(name)
-    directions.find{|direction| direction.name == name }
+    directions.find { |direction| direction.name == name }
   end
 
   def valid_coordinates?(coordinates)

@@ -32,7 +32,7 @@ describe RobotSimulator do
     end
 
     context "multiple place commands" do
-      let(:expected_position) { "3,4,NORTH\n" }
+      let(:expected_position) { "4,5,NORTH\n" }
       let(:file_name) { "valid_multiple_place_commands.txt" }
 
       specify { expect{execute}.to output(expected_position).to_stdout }

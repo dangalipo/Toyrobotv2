@@ -12,8 +12,7 @@ require_relative 'command_factory'
 class RobotSimulator
   def initialize(commands_source:)
     self.commands_source = commands_source
-    self.table_top = TableTop.new
-    self.robot = Robot.new(table_top: table_top)
+    self.robot = Robot.new(table_top: TableTop.new)
   end
 
   def execute
@@ -36,7 +35,7 @@ class RobotSimulator
 
   private
 
-  attr_accessor :commands_source, :robot, :table_top
+  attr_accessor :commands_source, :robot
 
   def execute_command(unparsed_command)
     command = CommandFactory.new(robot: robot, unparsed_command: unparsed_command).command

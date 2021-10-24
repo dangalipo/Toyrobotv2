@@ -1,9 +1,10 @@
 class MoveCommand < Command
   COMMAND_REGEX = /^MOVE$/
 
-  def execute(table_top)
-    return nil unless robot.placed?
+  def execute
+    return unless robot.placed?
 
+    table_top = robot.table_top
     direction = robot.direction
     new_x_position = robot.x_position + direction.move_x
     new_y_position = robot.y_position + direction.move_y

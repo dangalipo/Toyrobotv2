@@ -4,9 +4,9 @@ class Command
     self.unparsed_command = unparsed_command
   end
 
-  def execute(_table_top)
+  def execute
     raise NoMethodError,
-          'Subclasses of Command are exepected to implement #execute(table_top)'
+          'Subclasses of Command are exepected to implement #execute'
   end
 
   protected

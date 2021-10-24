@@ -4,7 +4,7 @@ describe TurnCommand do
   describe '#execute' do
     let(:table_top) { TableTop.new }
     let(:robot) { Robot.new(table_top: table_top) }
-    subject(:turn) { TurnCommand.new(robot, unparsed_command).execute(table_top) }
+    subject(:turn) { TurnCommand.new(robot, unparsed_command).execute }
 
     context 'robot has been placed' do
       let(:coordinates) { Coordinates.new(x_coordinate: 1, y_coordinate: 1) }

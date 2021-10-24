@@ -1,9 +1,10 @@
 class TurnCommand < Command
   COMMAND_REGEX = /^(LEFT|RIGHT)$/
 
-  def execute(table_top)
+  def execute
     return unless robot.placed?
 
+    table_top = robot.table_top
     turn_direction = unparsed_command.match(COMMAND_REGEX)[1]
     current_direction = robot.direction
     new_direction = if turn_direction == 'LEFT'

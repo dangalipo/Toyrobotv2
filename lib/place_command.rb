@@ -5,7 +5,8 @@ class PlaceCommand < Command
 
   class InvalidDirectionError < ArgumentError; end
 
-  def execute(table_top)
+  def execute
+    table_top = robot.table_top
     coordinates = Coordinates.new(x_coordinate: parsed_command[1].to_i,
                                   y_coordinate: parsed_command[2].to_i)
     direction = parsed_command[3]

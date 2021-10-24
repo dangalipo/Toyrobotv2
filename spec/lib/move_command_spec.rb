@@ -4,7 +4,7 @@ describe MoveCommand do
   describe '#execute' do
     let(:table_top) { TableTop.new }
     let(:robot) { Robot.new(table_top: table_top) }
-    subject(:move) { MoveCommand.new(robot, 'MOVE').execute(table_top) }
+    subject(:move) { MoveCommand.new(robot, 'MOVE').execute }
 
     context 'robot is placed' do
       let(:coordinates) do

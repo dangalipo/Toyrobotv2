@@ -1,10 +1,7 @@
 # Toy Robot Simulator
 
-## Specification
-The specification document can be found [here](docs/code_test_robot.pdf)
-
 ## Requirements
-* ruby 2.3.0
+* ruby 2.7.4
 
 ## Setup
 * Install bundler: ```gem install bundler```.
@@ -29,23 +26,23 @@ Please note the CLI compontent is not tested as it is:
 - very simple
 - quicker to test by hand that writing brittle specs that stub STDIN.
 
+
 ## Discussion
-At a high level, the basis of this solution is a simulator class initializing a Robot, TableTop and
+At a high level, the basis of this solution is a simulator class initializing a Robot with a TableTop and
 a CommandFactory. The CommandFactory uses the strategy pattern to select the the appropriate Command class
-and then execute the command's instruction set on the Robot, using the passed in TableTop as a reference for
+and then execute the command's instruction set on the Robot, using the robot's TableTop as a reference for
 directions and boundries.
 
 The Command structure uses the an Abstract class (in theory, ruby will still initalize it just fine). Whilst
 this is sometimes frowned upon, I have found that adoptting this pattern occasionally, helps communicate the
 expected interface. Regarding the commands themselves, I have elected to include the instruction calculations
-inside them rather than in the Robot. There is definately an argument for moving them into the Robot itself as
-they gerenally will involve the Robot's state, however I feel that the interactions with the TableTop make this
-a little fuzzy. Alternatively, the Robot could be initialized with a TableTop instance but in my mind this might
-be giving the Robot too much information.
+inside them rather than in the Robot. There is an argument for moving that logic into the robot as a lot of the
+calculation use the robot's state and the table top the robot has a reference to (the one that it's on), but in
+the end I found that solution to be less testable than what I went with.
 
-I also turn Directions and Coordinates into classes and I'm sort of on the fence about this. On one hand
-these do appear to be data objects which isn't great. On the other hand, it does ensure that it will not
-silently fail should the developer pass an unknown message to it. For example:
+I also turned Directions and Coordinates into classes rather than using hashes because I prefer types with well
+defined interfaces. This helps avoid confusion around what data is being store and protects against trying to
+access information that was never going to be there. For example:
 
 ```ruby
 

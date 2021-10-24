@@ -5,7 +5,7 @@ describe Command do
     subject(:execute) { Command.new(Robot.new, '').execute(TableTop.new) }
 
     specify do
-      expect { execute }.to raise_error(NotImplementedError,
+      expect { execute }.to raise_error(NoMethodError,
                                         'Subclasses of Command are exepected to implement #execute(table_top)')
     end
   end
